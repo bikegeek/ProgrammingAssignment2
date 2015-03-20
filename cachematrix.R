@@ -8,23 +8,9 @@
 ##     Summary: sets/gets a square matrix and its inverse. The output
 ##              from makeCacheMatrix is used as input to the cacheSolve function.
 
-## Function cacheSolve:
-##     Input:  The output from makeCacheMatrix(); a list of all the set/get
-##             functions.
-##     Returns: The inverse of the input matrix (input to makeCacheMatrix)
-##     Summary: If the inverse of the square matrix already exists, use
-##              makeCacheMatrix's getinverse() to retrieve the
-##              inverse matrix.  If the inverse of the matrix does not exist/not defined,
-##              then cacheSolve() calls the solve() function to compute the inverse matrix.
-
-
-#Create a matrix and its inverse with it's accessor (getXXX) and mutator
-#(setXXX) functions.
-#Pre-condition:  Matrix is an n x n matrix (square matrix), which has an
-#inverse.  WARNING: No error checking is performed on the input matrix to
-#verify that it is a square matrix.
-#Returns: a list of the accessor and mutator functions.
-
+##     Pre-condition:  The input matrix is an n x n matrix (square matrix), which
+##                     has an inverse.  WARNING: No error checking is performed
+##                     on the input matrix to verify that it is a square matrix.
 makeCacheMatrix <- function(x = matrix()) {
       #initialize the inverse matrix to NULL;
       #inv_x is global to the makeCacheMatrix
@@ -49,13 +35,16 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## Function cacheSolve:
+##     Input:  The output from makeCacheMatrix(); a list of all the set/get
+##             functions.
+##     Returns: The inverse of the input matrix (input to makeCacheMatrix)
+##     Summary: If the inverse of the square matrix already exists, use
+##              makeCacheMatrix's getinverse() to retrieve the
+##              inverse matrix.  If the inverse of the matrix does not
+##              exist/not defined, then cacheSolve() calls the solve()
+##              function to compute the inverse matrix.
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-         #If the inverse of matrix x doesn't exist, then use solve() to
-         #calculate it...
-
          #retrieve the value of the inverse matrix of x if it has already
          #been calculated or not null.
          inv_x <- x$getinverse()
@@ -64,10 +53,9 @@ cacheSolve <- function(x, ...) {
          }
 
          #Otherwise, calculate the inverse of matrix x using solve()
-         #first, retrieve the matrix x
+         #First, retrieve the matrix x
          data <- x$get()
          inv_x <- solve(data)
          #update the value for the inverse matrix, now that we've calculated it.
          x$setinverse(inv_x)
-
 }
